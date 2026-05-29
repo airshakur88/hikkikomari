@@ -153,6 +153,15 @@ textarea,
 [contenteditable="true"],
 [role="textbox"] {
   cursor: url('https://cdn.cursors-4u.net/previews/s-pink-premium-text-select-b6f64f2d-32.webp') 47 42, text !important;
+  caret-color: #ff8fc7;
+}
+
+.text-select:focus,
+input:not([type="submit"]):not([type="button"]):not([type="reset"]):not([type="checkbox"]):not([type="radio"]):focus,
+textarea:focus,
+[contenteditable="true"]:focus,
+[role="textbox"]:focus {
+  cursor: url('https://cdn.cursors-4u.net/previews/s-pink-premium-text-select-b6f64f2d-32.webp') 47 42, text !important;
 }
 
 @layer base {
