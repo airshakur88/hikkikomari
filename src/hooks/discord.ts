@@ -13,24 +13,26 @@ import {
 
 const MAX_RECONNECT_ATTEMPTS = 10;
 const MAX_RECONNECT_DELAY = 30000;
+const LOADING_TIMEOUT = 5000;
 
 export function useDiscordUser() {
   const { wsBase, userId } = getDiscordConfig();
-  const [user, setUser] = useState<DiscordUser | null>(null);
+  const [user, setUser] = useState<DiscordUser | null>(() => readDiscordCache());
   const [greeting, setGreeting] = useState<NekoparaGreeting | null>(null);
   const [protocol, setProtocol] = useState<{ ws: string } | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(() => !readDiscordCache());
   const wsRef = useRef<WebSocket | null>(null);
   const reconnectRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const reconnectAttemptRef = useRef(0);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
-    const cached = readDiscordCache();
-    if (cached) {
-      setUser(cached);
-      setLoading(false);
-    }
-  }, []);
+    if (!loading) return;
+    timeoutRef.current = setTimeout(() => setLoading(false), LOADING_TIMEOUT);
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
+  }, [loading]);
 
   const connect = useCallback(() => {
     if (!userId) return;
@@ -120,6 +122,7 @@ export function useDiscordUser() {
 
     return () => {
       if (reconnectRef.current) clearTimeout(reconnectRef.current);
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
       if (wsRef.current) wsRef.current.close();
     };
   }, [connect]);

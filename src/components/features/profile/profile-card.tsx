@@ -25,6 +25,7 @@ interface ProfileCardProps {
   badges?: string[];
   avatarSrc?: string;
   className?: string;
+  loading?: boolean;
 }
 
 export function ProfileCard({
@@ -34,11 +35,12 @@ export function ProfileCard({
   badges: _badges = [],
   avatarSrc,
   className,
+  loading = false,
 }: ProfileCardProps) {
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
 
-  if (!mounted) return null;
+  if (!mounted || loading) return null;
 
   return (
     <BlurFade

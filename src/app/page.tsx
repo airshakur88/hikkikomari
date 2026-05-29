@@ -8,7 +8,7 @@ import { useDiscordUser } from "@/hooks/discord";
 import { loadGallery } from "@/lib/gallery";
 
 export default function Home() {
-  const { user } = useDiscordUser();
+  const { user, loading } = useDiscordUser();
 
   useEffect(() => {
     loadGallery().catch(() => {});
@@ -20,12 +20,12 @@ export default function Home() {
 
       <section className="relative z-10 flex min-h-dvh flex-col items-center justify-center px-4 sm:px-6">
         <div className="flex w-full max-w-5xl flex-col items-center justify-center py-8 sm:py-16 md:py-0">
-          <div className="hidden md:flex md:h-3/4 md:w-full items-center justify-center">
-            <HeroProfile user={user} />
-          </div>
+        <div className="hidden md:flex md:h-3/4 md:w-full items-center justify-center">
+          <HeroProfile user={user} loading={loading} />
+        </div>
 
-          <div className="flex md:hidden flex-col items-center gap-4 sm:gap-6">
-            <HeroProfile user={user} />
+        <div className="flex md:hidden flex-col items-center gap-4 sm:gap-6">
+          <HeroProfile user={user} loading={loading} />
             <Separator className="w-16 opacity-50" />
           </div>
         </div>

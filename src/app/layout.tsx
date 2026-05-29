@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     ],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "~ Hikkikomari ~",
     images: [
       "https://hikkikomari.lol/21951af0-b994-47a1-beb6-bf9f2194c3a8.jpg",

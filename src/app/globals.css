@@ -112,6 +112,10 @@
   --sidebar-ring: #ff8fc7;
 }
 
+* {
+  cursor: url('https://cdn.cursors-4u.net/previews/s-pink-premium-pointer-d7943c6d-32.webp') 34 33, auto !important;
+}
+
 @layer components {
   .btn-hero {
     height: 2.5rem;
@@ -125,6 +129,32 @@
   }
 }
 
+.btn-pointer,
+button,
+[role="button"],
+select,
+option,
+summary,
+[type="submit"],
+[type="button"],
+[type="reset"],
+a,
+[data-slot="select-item"],
+[data-slot="select-content"],
+[data-slot="select-trigger"],
+[data-slot="select-scroll-up-button"],
+[data-slot="select-scroll-down-button"] {
+  cursor: url('https://cdn.cursors-4u.net/previews/s-pink-premium-link-select-f753bfe8-32.webp') 39 33, pointer !important;
+}
+
+.text-select,
+input:not([type="submit"]):not([type="button"]):not([type="reset"]):not([type="checkbox"]):not([type="radio"]),
+textarea,
+[contenteditable="true"],
+[role="textbox"] {
+  cursor: url('https://cdn.cursors-4u.net/previews/s-pink-premium-text-select-b6f64f2d-32.webp') 47 42, text !important;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -132,9 +162,6 @@
 
   html {
     @apply font-sans;
-    cursor:
-      url("https://cdn.hallaxi.us/cutey-cats-cursor.webp") 0 0,
-      default !important;
     overflow: -moz-scrollbars-none;
     scrollbar-width: none;
   }
