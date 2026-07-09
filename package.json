@@ -2,6 +2,10 @@
   "name": "hikkikomari",
   "version": "0.1.0",
   "private": true,
+  "author": {
+    "name": "airshakur88",
+    "url": "https://github.com/airshakur88"
+  },
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
